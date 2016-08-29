@@ -1,0 +1,24 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.mbv</groupId>
+    <artifactId>mbv_open_api</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>mbv_open_api_cache</artifactId>
+  <build/>
+ 	<dependencies>
+	    <!-- cache -->
+        <dependency>
+        	<groupId>com.mtsbw.ump</groupId>
+			<artifactId>ump_cache_client</artifactId>
+			<version>${ump_cache_client-version}</version>
+        </dependency>
+        <!-- cache end -->
+        <dependency>
+        	<groupId>com.mbv</groupId>
+        	<artifactId>mbv_open_api_dao</artifactId>
+        	<version>0.0.1-SNAPSHOT</version>
+        </dependency>
+ 	</dependencies>
+</project>

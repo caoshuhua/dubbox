@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0D6005C8-30C8-48EE-A528-9BFDD188A1DF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>mbv_open_api_sdk_csharp</RootNamespace>
+    <AssemblyName>mbv_open_api_sdk_csharp</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>R:\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="com\mbv\open\api\sdk\DefaultMbClient.cs" />
+    <Compile Include="com\mbv\open\api\sdk\MbClient.cs" />
+    <Compile Include="com\mbv\open\api\sdk\model\express\ExpressCompany.cs" />
+    <Compile Include="com\mbv\open\api\sdk\model\express\Region.cs" />
+    <Compile Include="com\mbv\open\api\sdk\model\order\ItemInfo.cs" />
+    <Compile Include="com\mbv\open\api\sdk\model\order\OrderInfo.cs" />
+    <Compile Include="com\mbv\open\api\sdk\model\order\OrderRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\model\order\ReturnOrder.cs" />
+    <Compile Include="com\mbv\open\api\sdk\model\order\ReturnSku.cs" />
+    <Compile Include="com\mbv\open\api\sdk\model\product\Product.cs" />
+    <Compile Include="com\mbv\open\api\sdk\model\product\ProductId.cs" />
+    <Compile Include="com\mbv\open\api\sdk\model\product\Sku.cs" />
+    <Compile Include="com\mbv\open\api\sdk\model\stock\SkuId.cs" />
+    <Compile Include="com\mbv\open\api\sdk\model\stock\SkuStock.cs" />
+    <Compile Include="com\mbv\open\api\sdk\model\workorder\OosItem.cs" />
+    <Compile Include="com\mbv\open\api\sdk\model\workorder\WorkOrder.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\BaseRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\express\AddDeliveryAddressRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\express\AddReturnAddressRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\express\DeleteDeliveryAddressRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\express\DeleteReturnAddressRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\express\GetDeliveryAddressRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\express\GetExpressCompanyRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\express\GetRegionareaRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\express\GetReturnAddressRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\express\UpdateDeliveryAddressRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\express\UpdateReturnAddressRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\order\GetBatchOrderRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\order\GetOrderRemarkRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\order\GetSingleOrderRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\order\GetVendorRemarkRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\order\OutstorageOrderRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\order\ReturnOrderBatchQueryRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\order\ReturnOrderCodeRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\order\ReturnOrderConfirmReceivedRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\order\UpdateExpressCodeRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\order\UpdateOrderRemarkRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\order\UpdateVendorRemarkRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\product\ProdBatchRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\product\ProdOneRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\product\ProdSellerRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\stock\StockBatchQueryBySkusRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\stock\StockBatchQueryRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\stock\StockBatchSetBySkuRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\stock\StockSingleQueryBySkuRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\stock\StockSingleSetBySkuRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\workorder\WorkOrderAddRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\workorder\WorkOrderBatchQueryRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\workorder\WorkOrderCancelRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\workorder\WorkOrderConfirmRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\request\workorder\WorkOrderSingleQueryRequest.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\BaseResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\express\AddDeliveryAddressResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\express\AddReturnAddressResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\express\DeleteDeliveryAddressResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\express\DeleteReturnAddressResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\express\GetDeliveryAddressResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\express\GetExpressCompanyResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\express\GetRegionareaResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\express\GetReturnAddressResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\express\UpdateDeliveryAddressResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\express\UpdateReturnAddressResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\order\GetBatchOrderResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\order\GetOrderRemarkResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\order\GetSingleOrderResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\order\GetVendorRemarkResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\order\OutstorageOrderResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\order\ReturnOrderBatchQueryResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\order\ReturnOrderConfirmReceivedResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\order\ReturnOrderSingleQueryResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\order\UpdateExpressCodeResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\order\UpdateOrderRemarkResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\order\UpdateVendorRemarkResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\product\ProdBatchResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\product\ProdOneResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\product\ProdSellerResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\stock\StockBatchQueryBySkusResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\stock\StockBatchQueryResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\stock\StockSetBySkuResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\stock\StockSingleQueryBySkuResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\workorder\WorkOrderAddResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\workorder\WorkOrderBatchQueryResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\workorder\WorkOrderCancelResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\workorder\WorkOrderConfirmResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\response\workorder\WorkOrderSingleQueryResponse.cs" />
+    <Compile Include="com\mbv\open\api\sdk\util\HttpHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,38 @@
+package $bean.fullPackage;
+#if($bean.fields.size()>0)
+import com.fasterxml.jackson.annotation.JsonProperty;
+#end
+#foreach($importObject in $bean.importObjects)
+import $importObject;
+#end
+
+/**
+ * 
+ * @author mb.sdk.tool
+ *
+ */
+public class ${bean.name}{
+
+#foreach($field in $bean.fields)
+ 
+	
+	@JsonProperty("${field.jsonName}")
+	private ${field.type} $field.name;                 
+    
+#end 
+
+#foreach($field in $bean.fields)
+ 
+#set($fieldNameUpper=${nameUtil.firstUpperPasical($field.name)})
+	
+	public $field.type get$fieldNameUpper() {
+		return $field.name;
+	}
+
+	public void set$fieldNameUpper($field.type $field.name) {
+		this.$field.name = $field.name;
+	}                
+    
+#end 
+
+}

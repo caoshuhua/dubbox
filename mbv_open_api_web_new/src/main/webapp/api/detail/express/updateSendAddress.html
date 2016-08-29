@@ -1,0 +1,379 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>API手册-编辑发货地址</title>
+<link rel="stylesheet" type="text/css" href="../../css/base.css">
+<link rel="stylesheet" type="text/css" href="../../css/API.css">
+<link rel="stylesheet"
+	href="../../css/Font-Awesome-3.2.1/css/font-awesome.min.css">
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/html5.min.js"></script>
+<script type="text/javascript" src="../../js/josAPI.js"></script>
+<script type="text/javascript">
+	function init() {
+		// 设置textarea自适应高度
+		var handler = function() {
+			setTareaAutoHeight('textarea');
+		};
+
+		// 添加监听
+		if (window.addEventListener) {//FF
+			window.addEventListener('DOMContentLoaded', handler, false);
+			window.addEventListener('load', handler, false);
+		} else if (window.attachEvent)//IE
+			window.attachEvent('onload', handler);
+		else
+			window.onload = handler;
+	}
+
+	// init();
+
+	function setTareaAutoHeight(id) {
+		alert(id);
+		alert(document.getElementById(id).offsetHeight + "px");
+		document.getElementById(id).style.height = document.getElementById(id).scrollHeight
+				+ "px";
+	}
+</script>
+</head>
+<body>
+	<header>
+		<div id="logo">
+			<a href="/api.html"><img src="../../images/logo.jpg" alt="美特斯邦威"><span>|</span><i>API手册</i></a>
+		</div>
+		<div class="serachDiv" style="display: none;">
+			<input type="text" id="searchInput" value="请输入您要搜索的内容..."
+				class="searchInput"> <input type="button" id="searchBtn"
+				class="searchBtn" value="搜 索">
+		</div>
+	</header>
+	<div class="wrapper">
+
+		<script type="text/javascript">
+			$(function() {
+
+				/**
+				 * 检索
+				 */
+				$("#searchBtn").click(
+						function() {
+							var keyword = $("#searchInput").val();
+							if (keyword && keyword != "请输入您要搜索的内容...") {
+								var searchtype = "all";
+								searchtype = "api"
+
+								var url = "/search/search.htm?type="
+										+ searchtype + "&keyword="
+										+ jQuery.trim(keyword);
+								window.open(url, '', "");
+							}
+						});
+
+				$(document).keyup(function(event) {
+					if (event.keyCode == 13) {
+						$("#searchBtn").trigger("click");
+					}
+				});
+				var jsonString='{"resp_code":"0","resp_info":null,"vendor_id":"5200000"}';
+				var json=JSON.stringify(JSON.parse(jsonString), null, 2);
+				$('#jsonData').html(syntaxHighlight(json));
+			});
+		</script>
+		<section class="josLeft indexLeft">
+			<ul>
+				<li class="active sub-menu"><a href="#" class="active"><i
+						class="icon-truck"></i>物流</a>
+					<ul class="subList">
+										  					  <li>
+					                    <a href="../express/addSendAddress.html">新增发货地址</a></li> 
+										  					  <li class="current">
+					                      <a href="../express/updateSendAddress.html">编辑发货地址</a></li> 
+										  					  <li>
+					                    <a href="../express/deleteSendAddress.html">删除发货地址</a></li> 
+										  					  <li>
+					                    <a href="../express/getSendAddressInfo.html">查询发货地址</a></li> 
+										  					  <li>
+					                    <a href="../express/addReturnAddress.html">新增退货地址</a></li> 
+										  					  <li>
+					                    <a href="../express/updateReturnAddress.html">编辑退货地址</a></li> 
+										  					  <li>
+					                    <a href="../express/deleteReturnAddress.html">删除退货地址</a></li> 
+										  					  <li>
+					                    <a href="../express/getReturnAddressInfo.html">查询退货地址</a></li> 
+										  					  <li>
+					                    <a href="../express/getExpressCompany.html">商家获取快递公司</a></li> 
+										  					  <li>
+					                    <a href="../express/getRegionArea.html">商家获取省市区县</a></li> 
+										</ul></li>
+			</ul>
+		</section>
+		<a name="a0"></a>
+		<section class="josList article">
+			<div class="block-header">
+				<a href="../../api.html"><i class="icon-home"></i>API列表</a><i>&gt;</i><a
+					href="../../list/express.html"><i class="icon-list"></i>物流</a><i>&gt;</i>编辑发货地址
+			</div>
+			<article class="articleCon">
+				<div class="api_title">
+					<h4>API功能描述</h4>
+					<p>API接口：mb.logistics.deliveryaddress.update</p>
+					<p>功能：编辑发货地址</p>
+					<p>授权类型：需要</p>
+					<p>应用场景：通用应用 自研应用</p>
+				</div>
+				<div class="api_title">
+					<h4>系统级别输入参数</h4>
+					<table class="josTable">
+						<tbody>
+							<tr class="grayBlueBg">
+								<th width="15%">名称</th>
+								<th width="15%">类型</th>
+								<th width="20%">是否必须</th>
+								<th>描述</th>
+							</tr>
+							<tr>
+								<td>appkey</td>
+								<td>String</td>
+								<td>是</td>
+								<td class="tleft">应用的app_key</td>
+							</tr>
+							<tr>
+								<td>token</td>
+								<td>String</td>
+								<td>是</td>
+								<td class="tleft">签名</td>
+							</tr>
+							<tr>
+								<td>timestamp</td>
+								<td>String</td>
+								<td>是</td>
+								<td class="tleft">时间戳，格式为yyyy-MM-dd HH:mm:ss，例如：2011-06-16
+									13:23:30。美邦API服务端允许客户端请求时间误差为6分钟</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="api_title">
+					<h4>应用级别输入参数</h4>
+					<table class="josTable">
+						<tbody>
+							<tr class="grayBlueBg">
+								<th width="15%">名称</th>
+								<th width="15%">类型</th>
+								<th width="20%">是否必须</th>
+								<th width="15%">示例值</th>
+								<th>描述</th>
+							</tr>		
+					
+                     <tr><td>contact&nbsp;</td>
+                        <td>
+                      					  <a href="">
+					  					  String&nbsp;</a>
+                                                    </td>
+                                                                             <td>
+                                                            																							是
+																			                                                                                     </td>
+                        <td class="tleft" style="word-break:break-all">
+                        						       张三
+						                           &nbsp;</td>
+                        <td class="tleft">
+                            联系人&nbsp;
+                        </td></tr>
+					
+                     <tr><td>mobile&nbsp;</td>
+                        <td>
+                      					  <a href="">
+					  					  String&nbsp;</a>
+                                                    </td>
+                                                                             <td>
+                                                            										                                                    否
+																			                                                                                     </td>
+                        <td class="tleft" style="word-break:break-all">
+                        						       13699998888
+						                           &nbsp;</td>
+                        <td class="tleft">
+                            手机号码(手机号码与固定电话两项必填一项，可两项都填)&nbsp;
+                        </td></tr>
+					
+                     <tr><td>telephone&nbsp;</td>
+                        <td>
+                      					  <a href="">
+					  					  String&nbsp;</a>
+                                                    </td>
+                                                                             <td>
+                                                            										                                                    否
+																			                                                                                     </td>
+                        <td class="tleft" style="word-break:break-all">
+                        						       021-55667788
+						                           &nbsp;</td>
+                        <td class="tleft">
+                            固定电话(手机号码与固定电话两项必填一项，可两项都填)&nbsp;
+                        </td></tr>
+					
+                     <tr><td>province&nbsp;</td>
+                        <td>
+                      					  <a href="">
+					  					  String&nbsp;</a>
+                                                    </td>
+                                                                             <td>
+                                                            																							是
+																			                                                                                     </td>
+                        <td class="tleft" style="word-break:break-all">
+                        						       上海
+						                           &nbsp;</td>
+                        <td class="tleft">
+                            省份&nbsp;
+                        </td></tr>
+					
+                     <tr><td>city&nbsp;</td>
+                        <td>
+                      					  <a href="">
+					  					  String&nbsp;</a>
+                                                    </td>
+                                                                             <td>
+                                                            																							是
+																			                                                                                     </td>
+                        <td class="tleft" style="word-break:break-all">
+                        						       上海市
+						                           &nbsp;</td>
+                        <td class="tleft">
+                            城市&nbsp;
+                        </td></tr>
+					
+                     <tr><td>district&nbsp;</td>
+                        <td>
+                      					  <a href="">
+					  					  String&nbsp;</a>
+                                                    </td>
+                                                                             <td>
+                                                            																							是
+																			                                                                                     </td>
+                        <td class="tleft" style="word-break:break-all">
+                        						       浦东新区
+						                           &nbsp;</td>
+                        <td class="tleft">
+                            区县&nbsp;
+                        </td></tr>
+					
+                     <tr><td>address&nbsp;</td>
+                        <td>
+                      					  <a href="">
+					  					  String&nbsp;</a>
+                                                    </td>
+                                                                             <td>
+                                                            																							是
+																			                                                                                     </td>
+                        <td class="tleft" style="word-break:break-all">
+                        						       康桥东路700号
+						                           &nbsp;</td>
+                        <td class="tleft">
+                            详细地址&nbsp;
+                        </td></tr>
+					
+                     <tr><td>zip&nbsp;</td>
+                        <td>
+                      					  <a href="">
+					  					  String&nbsp;</a>
+                                                    </td>
+                                                                             <td>
+                                                            																							是
+																			                                                                                     </td>
+                        <td class="tleft" style="word-break:break-all">
+                        						       200000
+						                           &nbsp;</td>
+                        <td class="tleft">
+                            邮编&nbsp;
+                        </td></tr>
+											</tbody>
+					</table>
+				</div>
+
+
+				<div class="api_title">
+					<h4>返回结果</h4>
+					<table class="josTable">
+						<tbody>
+							<tr class="grayBlueBg">
+								<th width="25%">名称</th>
+								<th width="30%">类型</th>
+								<th width="15%">示例值</th>
+								<th>描述</th>
+							</tr>
+							<tr>
+								<td>resp_code</td>
+								<td>String</td>
+								<td>0</td>
+								<td>0为正常，其它值参见错误代码一览表</td>
+							</tr>
+							</tr>
+							<tr>
+								<td>resp_info</td>
+								<td>String</td>
+								<td class="tleft" style="word-break: break-all">成功 &nbsp;</td>
+								<td class="tleft">成功 或者 失败信息 &nbsp;</td>
+							</tr>
+							
+										 <tr><td>vendor_id&nbsp;</td>
+                        <td>
+                      					  <a href="">
+					  					  String&nbsp;</a>
+                                                    </td>
+                        <td class="tleft" style="word-break:break-all">
+                        						       10000
+						                           &nbsp;</td>
+                        <td class="tleft">
+                            商家ID&nbsp;
+                        </td></tr>
+					
+						</tbody>
+					</table>
+				</div>
+				<div class="api_title">
+					<h4>返回示例值</h4>
+					<p>JSON 数据格式：</p>
+					<pre id="jsonData">
+					</pre>
+				</div>
+				<div class="api_title">
+					<h4>错误码</h4>
+					<table class="josTable">
+						<tbody>
+							<tr class="grayBlueBg">
+								<th width="30%">错误码</th>
+								<th width="30%">类型</th>
+								<th>是否必须</th>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="api_title">
+					<h4>API测试工具</h4>
+					<p></p>
+					<p>
+						<a href="../../tool/express/updateSendAddress.html" target="_blank"
+							class="toolsBtn">API测试工具</a>&nbsp;&nbsp; <a
+							href="../../example/express/updateSendAddress.html" target="_blank"
+							class="toolsBtn">SDK调用示例</a>
+					</p>
+
+				</div>
+			</article>
+		</section>
+		<footer>
+			<p style="text-align: center;">
+				&copy; meters<span style="color: red">/</span>bonwe 2016
+			</p>
+		</footer>
+		<div class="clr"></div>
+	</div>
+
+	<div id="hm_t_10255" class="hm-t-container">
+		<div class="hm-t-main"
+			style="width: 342px; height: 144px; display: none">
+			<!--</div><div class="hm-t-side-arrow" style="display: none;"></div></div>-->
+		</div>
+	</div>
+</body>
+</html>

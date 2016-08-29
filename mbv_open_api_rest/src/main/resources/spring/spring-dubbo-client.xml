@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo  
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+        ">
+        
+    <dubbo:application name="${dubbo.application.name}" />
+    <dubbo:provider timeout="${dubbo.server.timeout}" />
+  	<dubbo:registry  protocol="zookeeper" address="${dubbo.registry.address}" />
+ 		
+	<dubbo:reference id="stockApiService" interface="com.mbv.open.api.service.StockApiService" check="false" group="${mbv.dubbo.group}"/>
+	<dubbo:reference id="productApiService" interface="com.mbv.open.api.service.ProductApiService" check="false" group="${mbv.dubbo.group}"/>
+	<dubbo:reference id="addressApiService" interface="com.mbv.open.api.service.AddressApiService" check="false" group="${mbv.dubbo.group}"/>
+	<dubbo:reference id="orderApiService" interface="com.mbv.open.api.service.OrderApiService" check="false" group="${mbv.dubbo.group}"/>
+	<dubbo:reference id="returnOrderApiService" interface="com.mbv.open.api.service.ReturnOrderApiService" check="false" group="${mbv.dubbo.group}"/>
+	<dubbo:reference id="workOrderApiService" interface="com.mbv.open.api.service.WorkOrderApiService" check="false" group="${mbv.dubbo.group}"/>
+	
+ </beans>

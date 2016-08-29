@@ -1,0 +1,26 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+#if($bean.fields.size()>0)
+using Newtonsoft.Json;
+#end
+#foreach($importObject in $response.importObjects)
+using $importObject;
+#end
+using com.mbv.open.api.sdk.response.BaseResponse;
+
+
+namespace $response.fullPackage{
+
+public class $response.name : BaseResponse {
+
+#foreach($field in $response.fields)
+    [JsonProperty("$field.jsonName")]
+	public $field.type $fieldNameUpper{get;set;}                 
+    
+#end
+
+}
+
+}

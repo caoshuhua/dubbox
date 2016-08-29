@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>API调用示例</title>
+<link rel="stylesheet" type="text/css" href="../../css/base.css">
+<link rel="stylesheet" type="text/css" href="../../css/API.css">
+<link rel="stylesheet" type="text/css" href="../../css/example.css">
+<link rel="stylesheet"
+	href="../../css/Font-Awesome-3.2.1/css/font-awesome.min.css">
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/html5.min.js"></script>
+<script type="text/javascript" src="../../js/josAPI.js"></script>
+</head>
+<body>
+	<header>
+		<div id="logo">
+			<a href=""><img src="../../images/logo.jpg" alt="美特斯邦威"><span>|</span><i>API手册</i></a>
+		</div>
+		<div class="serachDiv" style="display: none;">
+			<input type="text" id="searchInput" value="请输入您要搜索的内容..."
+				class="searchInput"> <input type="button" id="searchBtn"
+				class="searchBtn" value="搜 索">
+		</div>
+	</header>
+	<div class="wrapper">
+
+
+		<script type="text/javascript">
+			$(function() {
+
+				/**
+				 * 检索
+				 */
+				$("#searchBtn").click(
+						function() {
+							var keyword = $("#searchInput").val();
+							if (keyword && keyword != "请输入您要搜索的内容...") {
+								var searchtype = "all";
+								searchtype = "api"
+
+								var url = "/search/search.htm?type="
+										+ searchtype + "&keyword="
+										+ jQuery.trim(keyword);
+								window.open(url, '', "");
+							}
+						});
+
+				$(document).keyup(function(event) {
+					if (event.keyCode == 13) {
+						$("#searchBtn").trigger("click");
+					}
+				});
+			});
+		</script>
+
+		<div class="baenCon">
+			<div class="api_title">
+				<h4>mb.logistics.returnaddress.update示例代码</h4>
+			</div>
+			<br>
+			<p>JAVA调用示例：</p>
+			<div class="codeDiv">
+			    public MbClient client=new DefaultMbClient(SERVER_URL,token, appKey);<br>
+                UpdateReturnAddressRequest request=new UpdateReturnAddressRequest();<br>
+                  request.setContact("mb");
+                  <br>				
+                  request.setMobile("mb");
+                  <br>				
+                  request.setTelephone("mb");
+                  <br>				
+                  request.setProvince("mb");
+                  <br>				
+                  request.setCity("mb");
+                  <br>				
+                  request.setDistrict("mb");
+                  <br>				
+                  request.setAddress("mb");
+                  <br>				
+                  request.setZip("mb");
+                  <br>				
+                UpdateReturnAddressResponse response=client.execute(request);<br>
+			</div>
+		</div>
+		<footer>
+			<p style="text-align: center;">
+				&copy; meters<span style="color: red">/</span>bonwe 2016
+			</p>
+		</footer>
+	</div>

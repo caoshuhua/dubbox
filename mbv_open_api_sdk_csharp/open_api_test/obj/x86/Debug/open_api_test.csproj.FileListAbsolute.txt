@@ -1,0 +1,9 @@
+G:\JavaWorkspace\mbv_api\mbv_open_api\mbv_open_api_sdk_csharp\open_api_test\bin\Debug\open_api_test.exe.config
+G:\JavaWorkspace\mbv_api\mbv_open_api\mbv_open_api_sdk_csharp\open_api_test\bin\Debug\open_api_test.exe
+G:\JavaWorkspace\mbv_api\mbv_open_api\mbv_open_api_sdk_csharp\open_api_test\bin\Debug\open_api_test.pdb
+G:\JavaWorkspace\mbv_api\mbv_open_api\mbv_open_api_sdk_csharp\open_api_test\obj\x86\Debug\open_api_test.exe
+G:\JavaWorkspace\mbv_api\mbv_open_api\mbv_open_api_sdk_csharp\open_api_test\obj\x86\Debug\open_api_test.pdb
+G:\JavaWorkspace\mbv_api\mbv_open_api\mbv_open_api_sdk_csharp\open_api_test\obj\x86\Debug\open_api_test.csprojResolveAssemblyReference.cache
+G:\JavaWorkspace\mbv_api\mbv_open_api\mbv_open_api_sdk_csharp\open_api_test\bin\Debug\mbv_open_api_sdk_csharp.dll
+G:\JavaWorkspace\mbv_api\mbv_open_api\mbv_open_api_sdk_csharp\open_api_test\bin\Debug\Newtonsoft.Json.dll
+G:\JavaWorkspace\mbv_api\mbv_open_api\mbv_open_api_sdk_csharp\open_api_test\bin\Debug\mbv_open_api_sdk_csharp.pdb

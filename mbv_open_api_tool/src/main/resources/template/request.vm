@@ -1,0 +1,69 @@
+package $request.fullPackage;
+import java.io.IOException;
+#if($request.fields.size()>0)
+import java.util.Map;
+import java.util.TreeMap;
+import com.mbv.open.api.sdk.util.JsonUtil;
+#end
+import com.mbv.open.api.sdk.request.BaseRequest;
+#foreach($importObject in $request.importObjects)
+import $importObject;
+#end
+
+/**
+ * 
+ * @author mb.sdk.tool
+ *
+ */
+public class ${request.name} extends BaseRequest<${request.responseName}> {
+
+#foreach($field in $request.fields)
+ 
+	private $field.type $field.name;                 
+    
+#end
+
+#foreach($field in $request.fields)
+ 
+
+  #set($fieldNameUpper=${nameUtil.firstUpperPasical($field.name)})
+	
+	public $field.type get$fieldNameUpper() {
+		return $field.name;
+	}
+
+	public void set$fieldNameUpper($field.type $field.name) {
+		this.$field.name = $field.name;
+	}                
+    
+#end
+	
+	@Override
+	public String getApiMethod() {
+		return "${api.parentPath}/${api.path}";
+	}
+
+
+	@Override
+	public String getAppParams() throws IOException {
+#if($request.fields.size()>0)
+		Map<String, Object> map = new TreeMap<String,Object>();
+#end
+#foreach($field in $request.fields)	
+  #set($fieldNameUpper=${nameUtil.firstUpperPasical($field.name)})
+  #set($fieldNameUnderline=${nameUtil.toUnderline($field.name)})  
+	    map.put("${fieldNameUnderline}", this.get${fieldNameUpper}());
+#end	
+#if($request.fields.size()>0)
+	    return JsonUtil.toJson(map);
+#else
+	    return "";
+#end    
+	}
+
+	@Override
+	public Class<${response.name}> getResponseClass() {
+		return ${response.name}.class;
+	}
+
+}	

@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.mbv</groupId>
+		<artifactId>mbv_open_api</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>mbv_open_api_server</artifactId>
+	<packaging>war</packaging>
+	
+	<properties>
+		<maven.test.skip>true</maven.test.skip>
+	</properties>
+	
+	<profiles>
+		<profile>
+			<id>product</id>
+			<properties>
+				<package.environment>product</package.environment>
+			</properties>
+		</profile>
+		<profile>
+			<id>sandbox</id>
+			<properties>
+				<package.environment>conf/sandbox</package.environment>
+			</properties>
+		</profile>
+	</profiles>
+	
+	<dependencies>
+		<dependency>
+			<groupId>com.mbv</groupId>
+			<artifactId>mbv_open_api_rest</artifactId>
+			<version>${mbv-version}</version>
+		</dependency>
+
+		<!-- Servlet -->
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>${taglibs-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>${servlet-version}</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!--page  -->
+	</dependencies>
+	
+	<build>	    
+		<finalName>mbv-open-api-server</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<!-- 
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<archive>
+						<addMavenDescriptor>false</addMavenDescriptor>
+					</archive>
+					<webResources>
+						<resource>
+							<directory>src/main/resources/${package.environment}</directory>
+							<targetPath>WEB-INF/classes</targetPath>
+							<filtering>true</filtering>
+						</resource>
+					</webResources>
+				</configuration>
+			</plugin>
+			 -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<path>/</path>
+					<port>8080</port>
+					<contextReloadable>true</contextReloadable>
+					<uriEncoding>utf-8</uriEncoding>
+				</configuration>
+			</plugin>
+			<!-- 打包到服务器插件 <plugin> <groupId>cn.tony</groupId> <artifactId>tools-maven-plugin</artifactId> 
+				<version>0.0.2</version> <configuration> <server-host>10.100.20.157</server-host> 
+				<password>password01!</password> <tomcatHome>/opt/apache-tomcat-7.0.56</tomcatHome> 
+				<finalName>o2oService</finalName> </configuration> </plugin> -->
+		</plugins>
+	</build>
+</project>

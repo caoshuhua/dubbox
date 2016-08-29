@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+#if($bean.fields.size()>0)
+using Newtonsoft.Json;
+#end
+
+
+/**
+ * 
+ * @author mb.sdk.tool
+ *
+ */
+
+namespace $bean.fullPackage { 
+ 
+public class ${bean.name}{
+
+#foreach($field in $bean.fields)
+ 
+	
+	[JsonProperty("${field.jsonName}")]
+	public ${field.type} $fieldNameUpper{get;set;}                 
+    
+#end 
+
+}
+
+}

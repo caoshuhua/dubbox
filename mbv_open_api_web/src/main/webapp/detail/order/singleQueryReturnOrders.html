@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>mb.returnorder.single.get - MbReturnOrderServiceImpl | 美特斯邦威</title>
+<link rel="stylesheet" type="text/css" href="/css/base.css">
+	<link rel="stylesheet" type="text/css" href="/css/API.css">
+	<script charset="utf-8" src="/js/s.js"></script><script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/js/html5.min.js"></script>
+	<script type="text/javascript" src="/js/josAPI.js"></script>
+<script type="text/javascript">
+
+      function init() {
+           // 设置textarea自适应高度
+           var handler = function () {
+               setTareaAutoHeight('textarea');
+           };
+
+           // 添加监听
+           if (window.addEventListener) {//FF
+               window.addEventListener('DOMContentLoaded', handler, false);
+               window.addEventListener('load', handler, false);
+           } else if (window.attachEvent)//IE
+               window.attachEvent('onload', handler);
+           else
+               window.onload = handler;
+       } 
+
+      // init();
+
+       function setTareaAutoHeight(id) {
+	   	   alert(id);
+		   alert(document.getElementById(id).offsetHeight + "px");
+           document.getElementById(id).style.height = document.getElementById(id).scrollHeight + "px";
+       }
+
+</script>	
+
+<body>
+<header>
+    <div id="logo" >
+        <a href=""><img src="/images/logo.jpg" alt="美特斯邦威"><span>|</span><i>API手册</i></a>
+    </div>
+    <div class="serachDiv" style="display:none;">
+        <input  type="text" id="searchInput" value="请输入您要搜索的内容..." class="searchInput">
+        <input type="button" id="searchBtn" class="searchBtn" value="搜 索">
+    </div>
+</header>
+<div class="wrapper">
+
+<script type="text/javascript">
+    $(function() {
+        
+        /**
+         * 检索
+         */
+        $("#searchBtn").click(function() {
+			var keyword=$("#searchInput").val();
+			if(keyword && keyword!="请输入您要搜索的内容...") {
+				var searchtype = "all";
+									searchtype = "api"
+					
+            	var url = "/search/search.htm?type="+searchtype+"&keyword="+jQuery.trim(keyword);
+				window.open(url,'',"");
+			}
+        });
+		
+		$(document).keyup(function(event){
+          if(event.keyCode ==13){
+            $("#searchBtn").trigger("click");
+          }
+		});
+    });
+	
+</script>
+    <p class="pageCrumb"><a href="/index.html">首页</a><i>&gt;</i><a href="/list/order.html">退单</a><i>&gt;</i>单个退单查询</p>
+	
+    <section class="conLeft">
+    	<h2>退单</h2>
+                    					  					  <dl class="current"
+					  					    		    			    				    					 title="mb.returnorder.single.get singleQueryReturnOrders">
+        					<dt><a href="/detail/order/singleQueryReturnOrders.html">mb.returnorder.single.get <br> 单个退单查询</a></dt>
+        					<div class="icon"></div>
+    					</dl> 
+										  					  <dl
+										    		    			    				    					 title="mb.returnorder.receive.comfirm confirmReturnOrderReceived">
+        					<dt><a href="/detail/order/confirmReturnOrderReceived.html">mb.returnorder.receive.comfirm <br> 退单确认收货</a></dt>
+        					<div class="icon"></div>
+    					</dl> 
+										  					  <dl
+										    		    			    				    					 title="mb.returnorder.batch.get batchQueryReturnOrders">
+        					<dt><a href="/detail/order/batchQueryReturnOrders.html">mb.returnorder.batch.get <br> 批量退单查询</a></dt>
+        					<div class="icon"></div>
+    					</dl> 
+					    </section>
+	<a name="a0"></a>
+    <section class="josList article">
+    	<h2 class="title">
+            	
+			mb.returnorder.single.get  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单个退单查询 </h2>
+        <article>
+			<h3><i></i><a name="a1">API功能描述</a></h3>
+            <div class="articleCon">
+            	<p>
+					单个退单查询
+				</p>
+            </div>
+        	<h3><i></i><a name="a1">授权类型</a></h3>
+            <div class="articleCon">
+            	<p>
+											需要
+									</p>
+            </div>
+        	<h3><i></i><a name="a2">应用场景</a></h3>
+            <div class="articleCon">
+            	<p>
+    				                          通用应用 自研应用  
+    				 				</p>
+            </div>
+        	<!--h3><i></i><a name="a3">API标签</a></h3>
+            <div class="articleCon">
+            	<p>
+    				    					<span>普通  基础</span>
+                    				</p>
+            </div -->
+        	<h3><i></i><a name="a4">系统级别输入参数</a></h3>
+            <div class="articleCon">
+            	<table class="josTable">
+                	<colgroup><col width="140">
+                	<col width="140">
+                	<col width="140">
+                	<col>
+                	</colgroup><tbody><tr class="grayBlueBg">
+                    	<td><strong>名称</strong></td>
+                    	<td><strong>类型</strong></td>
+                    	<td><strong>是否必须</strong></td>
+                    	<td><strong>描述</strong></td>
+                    </tr>
+                	  <tr>
+                <td>method</td>
+                <td>String</td>
+                <td>是</td>
+                <td class="tleft">API接口名称</td>
+            </tr>
+
+            <tr>
+                <td>app_key</td>
+                <td>String</td>
+                <td>是</td>
+                <td class="tleft">应用的app_key</td>
+            </tr>
+            <tr class="grayBlueBg">
+                <td>token</td>
+                <td>String</td>
+                <td>是</td>
+                <td class="tleft">签名</td>
+            </tr>
+            <tr>
+                <td>timestamp</td>
+                <td>String</td>
+                <td>是</td>
+                <td class="tleft">时间戳，格式为yyyy-MM-dd HH:mm:ss，例如：2011-06-16 13:23:30。美邦API服务端允许客户端请求时间误差为6分钟</td>
+            </tr>
+           </tbody></table>
+            </div>
+        	<h3><i></i><a name="a5">应用级别输入参数</a></h3>
+            <div class="articleCon">
+            	<table class="josTable">
+                	<colgroup><col width="140">
+                	<col width="140">
+                	<col width="140">
+                	<col width="140">
+                    <col>
+                	</colgroup><tbody><tr class="grayBlueBg">
+                    	<td><strong>名称</strong></td>
+                    	<td><strong>类型</strong></td>
+                    	<td><strong>是否必须</strong></td>
+                        <td><strong>示例值</strong></td>
+                    	<td><strong>描述</strong></td>
+                    </tr>
+										                </tbody></table>
+            </div>
+        	<h3><i></i><a name="a6">返回结果</a></h3>
+            <div class="articleCon">
+            	<table class="josTable">
+                	<colgroup><col width="140">
+                	<col width="140">
+                	<col width="140">
+                    <col>
+                	</colgroup><tbody><tr class="grayBlueBg">
+                    	<td><strong>名称</strong></td>
+                    	<td><strong>类型</strong></td>
+                        <td><strong>示例值</strong></td>
+                    	<td><strong>描述</strong></td>
+                    </tr>
+					  						                      <tr>
+                              <td>resp_code&nbsp;</td>
+                 <td>
+                                                				  						          			                           					<a href="#" target="_blank">String&nbsp;</a>
+    				                  </td>
+                 <td class="tleft" style="word-break:break-all">0 &nbsp;</td>
+                 <td class="tleft">
+                     0为正常，其它值参见错误代码一览表 &nbsp;
+                 </td>
+			          </tr>
+					  </tr>
+					  						                      <tr class="grayBlueBg">
+                              <td>resp_info&nbsp;</td>
+                 <td>
+                                                				  						          			                           					<a href="#" target="_blank">String&nbsp;</a>
+    				                  </td>
+                 <td class="tleft" style="word-break:break-all">成功 &nbsp;</td>
+                 <td class="tleft">
+                     成功 或者 失败信息 &nbsp;
+                 </td>
+			          </tr>
+					  
+			        										  					  					<tr>
+					                                                  <td>return_order&nbsp;</td>
+                        <td>
+                      					  <a href="/bean/order/ReturnOrder.html" target="_blank">
+					  					  ReturnOrder&nbsp;</a>
+                                                    </td>
+                        <td class="tleft" style="word-break:break-all">1234&nbsp;</td>
+                        <td class="tleft">
+                            搜索到的退单信息&nbsp;
+                        </td></tr>
+					
+                                                  </tbody></table>
+            </div>
+            <h3><i></i><a name="a7">返回示例值</a></h3>
+            <div class="articleCon" style="display:none">
+            	<p>JSON 数据格式</p>
+                <div class="codeBox">
+                	<table style="width:100%;">
+                    	<tbody><tr>
+							<td>
+								<textarea id="txt" name="txt" style="width:100%;height: 118px;  border:0; font-size:12px;font-family:Verdana;" readonly="true">{"resp_code":"0","resp_info":null,"return_order":{"returnorder_id":"TD160219009893","returnorder_status":"退货中","return_person":"weixin_这里没有原则","return_value":"318.0","apply_date":"2016-02-19 16:44:55","close_date":null,"return_reason_id":"33","return_reason":"其他（无理由退货等）","tracking_number":"9009893","express_company":null,"order_id":"000032174","mb_order_id":"140506998024","return_skus":[{"sku_id":"11020375045","vendor_sku_id":"11020375045","vendor_international_id":"6907303205245","product_name":"男前胸印字母圆领短袖恤","value":"159.0","quantity":"1","sale_attr1_value":"红色","sale_attr2_value":"160/90A","is_received":"1"}]}}</textarea>
+							</td>
+                        </tr>
+                    </tbody></table>
+                </div>
+            </div>
+        	<h3><i></i><a name="a8">错误码</a></h3>
+            <div class="articleCon">
+            	<table class="josTable">
+                	<colgroup><col width="220">
+                	<col width="220">
+                	<col>
+                	</colgroup><tbody><tr class="grayBlueBg">
+                    	<td>错误码</td>
+                    	<td>类型</td>
+                    	<td>是否必须</td>
+                    </tr>
+                	 											                </tbody></table>
+            </div>
+        	<h3><i></i><a name="a9">API测试工具</a></h3>
+            <div class="articleCon" id="toolBtn">
+				<a href="/tool/order/singleQueryReturnOrders.html" target="_blank" class="toolsBtn">API测试工具</a>&nbsp;&nbsp;
+				<a href="/example/order/singleQueryReturnOrders.html" target="_blank" class="toolsBtn">SDK调用示例</a>
+            </div>
+        	<h3><i></i><a name="a10">FAQ</a></h3>
+            <div class="articleCon">
+            
+            </div>
+            
+        </article>        
+    </section>
+    <footer>
+        <p style="text-align: center;">
+            ? meters<span style="color: red">/</span>bonwe 2015
+        </p>
+    </footer>
+    <div class="clr"></div>
+	 </div>
+
+<div id="hm_t_10255" class="hm-t-container">
+    <div class="hm-t-main" style="width:342px;height:144px;display:none">
+<!--</div><div class="hm-t-side-arrow" style="display: none;"></div></div>-->
+</div></div>
+</body>
+</html>

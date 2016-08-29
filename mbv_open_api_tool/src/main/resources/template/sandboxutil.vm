@@ -1,0 +1,29 @@
+package com.mbv.open.api.common.util;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.mbv.open.api.common.constant.SandBoxConstant;
+
+/**
+ * 
+ * @author mb.sdk.tool
+ *
+ */
+public class SandBoxUtil{
+
+	public static Map<String,String> sandBoxResponses;
+	
+	static{
+		sandBoxResponses=new HashMap<String, String>();
+#foreach($sandboxResponse in ${sandboxResponses.entrySet()})
+	    sandBoxResponses.put("${sandboxResponse.key}", SandBoxConstant.${sandboxResponse.value});                 
+    
+#end		
+		
+	}
+	
+	public static String getSandBoxResponse(String key){
+		return sandBoxResponses.get(key);
+	}
+
+}

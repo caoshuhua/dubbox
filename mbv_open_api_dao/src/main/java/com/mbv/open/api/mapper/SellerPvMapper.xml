@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mbv.open.api.dao.SellerPvMapper" >
+  <resultMap id="BaseResultMap" type="com.mbv.open.api.entity.SellerPv" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="app_key" property="appKey" jdbcType="VARCHAR" />
+    <result column="user_code" property="userCode" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="INTEGER" />
+    <result column="request_num" property="requestNum" jdbcType="INTEGER" />
+    <result column="request_limit" property="requestLimit" jdbcType="INTEGER" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="last_modified_user" property="lastModifiedUser" jdbcType="VARCHAR" />
+    <result column="last_modified_date" property="lastModifiedDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, app_key, user_code, date, request_num, request_limit, create_user, create_date, 
+    last_modified_user, last_modified_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vp_seller_pv
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByAppKeyAndDate" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from vp_seller_pv
+    where app_key = #{appKey,jdbcType=VARCHAR} and date = #{date,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vp_seller_pv
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mbv.open.api.entity.SellerPv" >
+    insert into vp_seller_pv (app_key, user_code, 
+      date, request_num, request_limit, 
+      create_user, create_date, last_modified_user)
+    values (#{appKey,jdbcType=VARCHAR}, #{userCode,jdbcType=VARCHAR}, 
+      #{date,jdbcType=INTEGER}, #{requestNum,jdbcType=INTEGER}, #{requestLimit,jdbcType=INTEGER}, 
+      #{createUser,jdbcType=VARCHAR},now(), #{lastModifiedUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mbv.open.api.entity.SellerPv" >
+    insert into vp_seller_pv
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="appKey != null" >
+        app_key,
+      </if>
+      <if test="userCode != null" >
+        user_code,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="requestNum != null" >
+        request_num,
+      </if>
+      <if test="requestLimit != null" >
+        request_limit,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="lastModifiedUser != null" >
+        last_modified_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="appKey != null" >
+        #{appKey,jdbcType=VARCHAR},
+      </if>
+      <if test="userCode != null" >
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=INTEGER},
+      </if>
+      <if test="requestNum != null" >
+        #{requestNum,jdbcType=INTEGER},
+      </if>
+      <if test="requestLimit != null" >
+        #{requestLimit,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifiedUser != null" >
+        #{lastModifiedUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mbv.open.api.entity.SellerPv" >
+    update vp_seller_pv
+    <set >
+      <if test="appKey != null" >
+        app_key = #{appKey,jdbcType=VARCHAR},
+      </if>
+      <if test="userCode != null" >
+        user_code = #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=INTEGER},
+      </if>
+      <if test="requestNum != null" >
+        request_num = #{requestNum,jdbcType=INTEGER},
+      </if>
+      <if test="requestLimit != null" >
+        request_limit = #{requestLimit,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifiedUser != null" >
+        last_modified_user = #{lastModifiedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifiedDate != null" >
+        last_modified_date = #{lastModifiedDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="com.mbv.open.api.entity.SellerPv" >
+    update vp_seller_pv
+    set app_key = #{appKey,jdbcType=VARCHAR},
+      user_code = #{userCode,jdbcType=VARCHAR},
+      date = #{date,jdbcType=INTEGER},
+      request_num = #{requestNum,jdbcType=INTEGER},
+      request_limit = #{requestLimit,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      last_modified_user = #{lastModifiedUser,jdbcType=VARCHAR},
+      last_modified_date = #{lastModifiedDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByAppKeyAndDate" parameterType="java.util.Map" >    
+    update vp_seller_pv
+    set
+      request_num = request_num+1,
+      last_modified_user = #{lastModifiedUser,jdbcType=VARCHAR}
+    where app_key = #{appKey,jdbcType=VARCHAR} and date = #{date,jdbcType=INTEGER} and request_num<![CDATA[<]]>request_limit
+  </update>
+  <insert id="insertTodayData" parameterType="com.mbv.open.api.entity.SellerPv" >
+    insert into vp_seller_pv(app_key,user_code,date,request_num,request_limit,create_user,create_date,last_modified_user) select app_key,user_code,${date},0,request_limit,'${createUser}',now(),'${lastModifiedUser}' from vp_seller_security
+  </insert>  
+</mapper>

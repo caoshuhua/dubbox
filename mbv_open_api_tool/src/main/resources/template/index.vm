@@ -1,0 +1,86 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>API文档首页</title>
+    <link rel="stylesheet" type="text/css" href="css/base.css" />
+    <link rel="stylesheet" type="text/css" href="css/API.css" />
+    <link rel="stylesheet" href="css/Font-Awesome-3.2.1/css/font-awesome.min.css">
+    <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+    <script type="text/javascript" src="js/html5.min.js"></script>
+    <script type="text/javascript" src="js/josAPI.js"></script>
+    <!-- add end-->
+</head>
+<body>
+<header>
+    <div id="logo" >
+        <a href=""><img src="images/logo.jpg" alt="美特斯邦威"><span>|</span><i>API手册</i></a>
+    </div>
+    <div class="serachDiv" style="display:none;">
+        <input  type="text" id="searchInput" value="请输入您要搜索的内容..." class="searchInput">
+        <input type="button" id="searchBtn" class="searchBtn" value="搜 索">
+    </div>
+</header>
+<div class="wrapper">
+
+    <script type="text/javascript">
+        $(function() {
+            /**
+             * 检索
+             */
+            $("#searchBtn").click(function() {
+                var keyword=$("#searchInput").val();
+                if(keyword && keyword!="请输入您要搜索的内容...") {
+                    var searchtype = "all";
+                    searchtype = "api"
+
+                    var url = "/search/search.htm?type="+searchtype+"&keyword="+jQuery.trim(keyword);
+                    window.open(url,'',"");
+                }
+            });
+
+            $(document).keyup(function(event){
+                if(event.keyCode ==13){
+                    $("#searchBtn").trigger("click");
+                }
+            });
+        });
+
+    </script>
+    <section class="josLeft">
+        <ul>
+            <li><a href="./index.html"><i class="icon-home"></i>首页</a></li>
+            <li class="active"><a href=""><i class="icon-list"></i>API 列表</a></li>
+        </ul>
+    </section>
+
+    <section class="josRight">
+        <h2 class="title"><a name="api">API组列表</a></h2>
+#foreach($provider in $providers)
+ 
+	<dl class="rightArea">
+            <dt><a href="list/${provider.url}.html">${provider.bName}</a></dt>
+            <dd>${provider.desc}</dd>
+    </dl>                 
+    
+#end        		
+    </section>
+
+    <div class="clr"></div>
+    <div id="BackTop" style="display:none;">
+        <div class="backBtn" id="backBtn"></div>
+    </div>
+    </div>
+<footer>
+    <p style="text-align: center;">
+        &copy; meters<span style="color: red">/</span>bonwe 2016
+    </p>
+</footer>
+</body>
+</html>
+<script>
+    $(document).ready(function(){
+        $("#BackTop").css({"position":"fixed","bottom":"0","right":"0"})
+        goTopEx();
+    })
+</script>

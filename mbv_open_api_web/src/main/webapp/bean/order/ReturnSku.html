@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>API详情页</title>
+	<link rel="stylesheet" type="text/css" href="/css/base.css">
+	<link rel="stylesheet"   type="text/css" href="/css/API.css">
+		<link rel="stylesheet" type="text/css" href="/css/example.css">
+	<link rel="stylesheet" href="/css/Font-Awesome-3.2.1/css/font-awesome.min.css">
+	<script charset="utf-8" src="/js/s.js"></script>
+	<script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/js/html5.min.js"></script>
+	<script type="text/javascript" src="/js/josAPI.js"></script>
+<body>
+<header>
+	<div id="logo" >
+		<a href=""><img src="/images/logo.jpg" alt="美特斯邦威"><span>|</span><i>API手册</i></a>
+	</div>
+	<div class="serachDiv" style="display:none;">
+		<input  type="text" id="searchInput" value="请输入您要搜索的内容..." class="searchInput">
+		<input type="button" id="searchBtn" class="searchBtn" value="搜 索">
+	</div>
+</header>
+<div class="wrapper">
+
+
+<script type="text/javascript">
+    $(function() {
+        
+        /**
+         * 检索
+         */
+        $("#searchBtn").click(function() {
+			var keyword=$("#searchInput").val();
+			if(keyword && keyword!="请输入您要搜索的内容...") {
+				var searchtype = "all";
+									searchtype = "api"
+					
+            	var url = "/search/search.htm?type="+searchtype+"&keyword="+jQuery.trim(keyword);
+				window.open(url,'',"");
+			}
+        });
+		
+		$(document).keyup(function(event){
+          if(event.keyCode ==13){
+            $("#searchBtn").trigger("click");
+          }
+		});
+    });
+	
+</script>
+<p class="pageCrumb">
+		<a href="/index.html">文档首页</a>
+			<i>&gt;</i>
+		   <a href="/index.html">API文档</a>
+			<i>&gt;</i>
+		   <a href="/list/order.html">退单</a>
+			<i>&gt;</i>
+		   <a href="/detail/order/batchQueryReturnOrders.html">mb.returnorder.batch.get</a>
+			<i>&gt;</i>
+           <a href="javascript:void(0)">ReturnSku</a>
+	</p>
+<div class="baenCon">
+		<section>
+			<h2 class="title">简要描述</h2><br>
+		</section>
+    	<table class="josTable">
+        	<colgroup><col width="140">
+        	<col width="140">
+        	<col width="140">
+        	<col width="140">
+
+            <col>
+ 			<col width="100">
+			</colgroup><tbody><tr class="grayBlueBg">
+            	<td>名称</td>
+            	<td>类型</td>
+            	<td>是否必须</td>
+                <td>示例值</td>
+            	<td>描述</td>
+				<td>敏感字段</td>
+            </tr>
+											  					  					<tr>
+					  					  <td>sku_id&nbsp;</td>
+                        <td>
+                      					  <a href="#" target="_blank">
+					                                    						    						    								 			String&nbsp;</a>
+                                                    </td>
+                                                                                <td>                            否
+                                                </td>
+                        <td class="tleft" style="word-break:break-all">&nbsp;</td>
+                        <td class="tleft">
+                            商品编码
+                        </td>
+                            <td>
+																	                                        否
+																	                            </td>
+                                           </tr>
+								  					  					<tr class="grayBlueBg">
+					  					  <td>vendor_sku_id&nbsp;</td>
+                        <td>
+                      					  <a href="#" target="_blank">
+					                                    						    						    								 			String&nbsp;</a>
+                                                    </td>
+                                                                                <td>                            否
+                                                </td>
+                        <td class="tleft" style="word-break:break-all">&nbsp;</td>
+                        <td class="tleft">
+                            商家货号(SKU)
+                        </td>
+                            <td>
+																	                                        否
+																	                            </td>
+                                           </tr>
+								  					  					<tr>
+					  					  <td>vendor_international_id&nbsp;</td>
+                        <td>
+                      					  <a href="#" target="_blank">
+					                                    						    						    								 			String&nbsp;</a>
+                                                    </td>
+                                                                                <td>                            否
+                                                </td>
+                        <td class="tleft" style="word-break:break-all">&nbsp;</td>
+                        <td class="tleft">
+                            国际码
+                        </td>
+                            <td>
+																	                                        否
+																	                            </td>
+                                           </tr>
+								  					  					<tr class="grayBlueBg">
+					  					  <td>product_name&nbsp;</td>
+                        <td>
+                      					  <a href="#" target="_blank">
+					                                    						    						    								 			String&nbsp;</a>
+                                                    </td>
+                                                                                <td>                            否
+                                                </td>
+                        <td class="tleft" style="word-break:break-all">&nbsp;</td>
+                        <td class="tleft">
+                            商品名称
+                        </td>
+                            <td>
+																	                                        否
+																	                            </td>
+                                           </tr>
+								  					  					<tr>
+					  					  <td>value&nbsp;</td>
+                        <td>
+                      					  <a href="#" target="_blank">
+					                                    						    						    								 			String&nbsp;</a>
+                                                    </td>
+                                                                                <td>                            否
+                                                </td>
+                        <td class="tleft" style="word-break:break-all">&nbsp;</td>
+                        <td class="tleft">
+                            退货金额
+                        </td>
+                            <td>
+																	                                        否
+																	                            </td>
+                                           </tr>
+								  					  					<tr class="grayBlueBg">
+					  					  <td>quantity&nbsp;</td>
+                        <td>
+                      					  <a href="#" target="_blank">
+					                                    						    						    								 			String&nbsp;</a>
+                                                    </td>
+                                                                                <td>                            否
+                                                </td>
+                        <td class="tleft" style="word-break:break-all">&nbsp;</td>
+                        <td class="tleft">
+                            退货数量
+                        </td>
+                            <td>
+																	                                        否
+																	                            </td>
+                                           </tr>
+								  					  					<tr>
+					  					  <td>sale_attr1_value&nbsp;</td>
+                        <td>
+                      					  <a href="#" target="_blank">
+					                                    						    						    								 			String&nbsp;</a>
+                                                    </td>
+                                                                                <td>                            否
+                                                </td>
+                        <td class="tleft" style="word-break:break-all">&nbsp;</td>
+                        <td class="tleft">
+                            颜色名称
+                        </td>
+                            <td>
+																	                                        否
+																	                            </td>
+                                           </tr>
+								  					  					<tr class="grayBlueBg">
+					  					  <td>sale_attr2_value&nbsp;</td>
+                        <td>
+                      					  <a href="#" target="_blank">
+					                                    						    						    								 			String&nbsp;</a>
+                                                    </td>
+                                                                                <td>                            否
+                                                </td>
+                        <td class="tleft" style="word-break:break-all">&nbsp;</td>
+                        <td class="tleft">
+                            尺寸名称
+                        </td>
+                            <td>
+																	                                        否
+																	                            </td>
+                                           </tr>
+								  					  					<tr>
+					  					  <td>is_received&nbsp;</td>
+                        <td>
+                      					  <a href="#" target="_blank">
+					                                    						    						    								 			String&nbsp;</a>
+                                                    </td>
+                                                                                <td>                            否
+                                                </td>
+                        <td class="tleft" style="word-break:break-all">&nbsp;</td>
+                        <td class="tleft">
+                            是否收到货
+                        </td>
+                            <td>
+																	                                        否
+																	                            </td>
+                                           </tr>
+			        </tbody></table>
+    </div>	
+	<footer>
+		<p style="text-align: center;">
+			? meters<span style="color: red">/</span>bonwe 2015
+		</p>
+	</footer>
+</div>

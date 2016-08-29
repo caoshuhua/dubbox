@@ -1,0 +1,383 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>API手册-确认工单</title>
+<link rel="stylesheet" type="text/css" href="../../css/base.css">
+<link rel="stylesheet" type="text/css" href="../../css/API.css">
+<link rel="stylesheet"
+	href="../../css/Font-Awesome-3.2.1/css/font-awesome.min.css">
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/html5.min.js"></script>
+<script type="text/javascript" src="../../js/josAPI.js"></script>
+<script type="text/javascript">
+	function init() {
+		// 设置textarea自适应高度
+		var handler = function() {
+			setTareaAutoHeight('textarea');
+		};
+
+		// 添加监听
+		if (window.addEventListener) {//FF
+			window.addEventListener('DOMContentLoaded', handler, false);
+			window.addEventListener('load', handler, false);
+		} else if (window.attachEvent)//IE
+			window.attachEvent('onload', handler);
+		else
+			window.onload = handler;
+	}
+
+	// init();
+
+	function setTareaAutoHeight(id) {
+		alert(id);
+		alert(document.getElementById(id).offsetHeight + "px");
+		document.getElementById(id).style.height = document.getElementById(id).scrollHeight
+				+ "px";
+	}
+</script>
+</head>
+<body>
+	<header>
+		<div id="logo">
+			<a href="../api.html"><img src="../../images/logo.jpg" alt="美特斯邦威"><span>|</span><i>API手册</i></a>
+		</div>
+		<div class="serachDiv" style="display: none;">
+			<input type="text" id="searchInput" value="请输入您要搜索的内容..."
+				class="searchInput"> <input type="button" id="searchBtn"
+				class="searchBtn" value="搜 索">
+		</div>
+	</header>
+	<div class="wrapper">
+
+		<script type="text/javascript">
+			$(function() {
+
+				/**
+				 * 检索
+				 */
+				$("#searchBtn").click(
+						function() {
+							var keyword = $("#searchInput").val();
+							if (keyword && keyword != "请输入您要搜索的内容...") {
+								var searchtype = "all";
+								searchtype = "api"
+
+								var url = "/search/search.htm?type="
+										+ searchtype + "&keyword="
+										+ jQuery.trim(keyword);
+								window.open(url, '', "");
+							}
+						});
+
+				$(document).keyup(function(event) {
+					if (event.keyCode == 13) {
+						$("#searchBtn").trigger("click");
+					}
+				});
+				var jsonString='{"resp_code":"0","resp_info":"返回正常","workorder_id":null,"workorder_create_date":null,"workorder_state":null,"workorder_type":null,"workorder_confirm_date":null}';
+				var json=JSON.stringify(JSON.parse(jsonString), null, 2);
+				$('#jsonData').html(syntaxHighlight(json));
+			});
+		</script>
+		<section class="josLeft indexLeft">
+			<ul>
+				<li class="active sub-menu"><a href="#" class="active"><i
+						class="icon-truck"></i>工单</a>
+					<ul class="subList">
+										  					  <li>
+					                    <a href="../workorder/batchQueryWorkOrder.html">批量工单查询</a></li> 
+										  					  <li>
+					                    <a href="../workorder/singleQueryWorkOrder.html">单个工单查询</a></li> 
+										  					  <li>
+					                    <a href="../workorder/addWorkOrder.html">新增工单</a></li> 
+										  					  <li class="current">
+					                      <a href="../workorder/confirmWorkOrder.html">确认工单</a></li> 
+										  					  <li>
+					                    <a href="../workorder/cancelWorkOrder.html">取消工单</a></li> 
+										</ul></li>
+			</ul>
+		</section>
+		<a name="a0"></a>
+		<section class="josList article">
+			<div class="block-header">
+				<a href="../../api.html"><i class="icon-home"></i>API列表</a><i>&gt;</i><a
+					href="../../list/workorder.html"><i class="icon-list"></i>工单</a><i>&gt;</i>确认工单
+			</div>
+			<article class="articleCon">
+				<div class="api_title">
+					<h4>API功能描述</h4>
+					<p>API接口：mb.workorder.confirm</p>
+					<p>功能：确认工单</p>
+					<p>授权类型：需要</p>
+					<p>应用场景：通用应用 自研应用</p>
+				</div>
+				<div class="api_title">
+					<h4>系统级别输入参数</h4>
+					<table class="josTable">
+						<tbody>
+							<tr class="grayBlueBg">
+								<th width="15%">名称</th>
+								<th width="15%">类型</th>
+								<th width="20%">是否必须</th>
+								<th>描述</th>
+							</tr>
+							<tr>
+								<td>appkey</td>
+								<td>String</td>
+								<td>是</td>
+								<td class="tleft">应用的app_key</td>
+							</tr>
+							<tr>
+								<td>token</td>
+								<td>String</td>
+								<td>是</td>
+								<td class="tleft">签名</td>
+							</tr>
+							<tr>
+								<td>timestamp</td>
+								<td>String</td>
+								<td>是</td>
+								<td class="tleft">时间戳，格式为yyyy-MM-dd HH:mm:ss，例如：2011-06-16
+									13:23:30。美邦API服务端允许客户端请求时间误差为6分钟</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="api_title">
+					<h4>应用级别输入参数</h4>
+					<table class="josTable">
+						<tbody>
+							<tr class="grayBlueBg">
+								<th width="15%">名称</th>
+								<th width="15%">类型</th>
+								<th width="20%">是否必须</th>
+								<th width="15%">示例值</th>
+								<th>描述</th>
+							</tr>		
+					
+                     <tr><td>workorder_type&nbsp;</td>
+                        <td>
+                      					  <a href="">
+					  					  String&nbsp;</a>
+                                                    </td>
+                                                                             <td>
+                                                            																							是
+																			                                                                                     </td>
+                        <td class="tleft" style="word-break:break-all">
+                        						       0
+						                           &nbsp;</td>
+                        <td class="tleft">
+                            工单类型 0：缺货&nbsp;
+                        </td></tr>
+					
+                     <tr><td>order_id&nbsp;</td>
+                        <td>
+                      					  <a href="">
+					  					  String&nbsp;</a>
+                                                    </td>
+                                                                             <td>
+                                                            																							是
+																			                                                                                     </td>
+                        <td class="tleft" style="word-break:break-all">
+                        						       000032298
+						                           &nbsp;</td>
+                        <td class="tleft">
+                            订单ID&nbsp;
+                        </td></tr>
+					
+                     <tr><td>remark&nbsp;</td>
+                        <td>
+                      					  <a href="">
+					  					  String&nbsp;</a>
+                                                    </td>
+                                                                             <td>
+                                                            										                                                    否
+																			                                                                                     </td>
+                        <td class="tleft" style="word-break:break-all">
+                        								1234
+						                           &nbsp;</td>
+                        <td class="tleft">
+                            工单备注&nbsp;
+                        </td></tr>
+					
+                     <tr><td>mb_order_id&nbsp;</td>
+                        <td>
+                      					  <a href="">
+					  					  String&nbsp;</a>
+                                                    </td>
+                                                                             <td>
+                                                            																							是
+																			                                                                                     </td>
+                        <td class="tleft" style="word-break:break-all">
+                        						       140507009045
+						                           &nbsp;</td>
+                        <td class="tleft">
+                            美邦订单ID&nbsp;
+                        </td></tr>
+					
+                     <tr><td>oos_items&nbsp;</td>
+                        <td>
+                      					  <a href="../../bean/workorder/OosItem.html" target="_blank">
+					  					  List&lt;OosItem&gt;&nbsp;</a>
+                                                    </td>
+                                                                             <td>
+                                                            																							是
+																			                                                                                     </td>
+                        <td class="tleft" style="word-break:break-all">
+                        						       [{"quantity":"1","sku_id":"50967790148"}]
+						                           &nbsp;</td>
+                        <td class="tleft">
+                            缺货项&nbsp;
+                        </td></tr>
+					
+                     <tr><td>workorder_id&nbsp;</td>
+                        <td>
+                      					  <a href="">
+					  					  String&nbsp;</a>
+                                                    </td>
+                                                                             <td>
+                                                            																							是
+																			                                                                                     </td>
+                        <td class="tleft" style="word-break:break-all">
+                        						       00000008
+						                           &nbsp;</td>
+                        <td class="tleft">
+                            工单ID&nbsp;
+                        </td></tr>
+											</tbody>
+					</table>
+				</div>
+
+
+				<div class="api_title">
+					<h4>返回结果</h4>
+					<table class="josTable">
+						<tbody>
+							<tr class="grayBlueBg">
+								<th width="25%">名称</th>
+								<th width="30%">类型</th>
+								<th width="15%">示例值</th>
+								<th>描述</th>
+							</tr>
+							<tr>
+								<td>resp_code</td>
+								<td>String</td>
+								<td>0</td>
+								<td>0为正常，其它值参见错误代码一览表</td>
+							</tr>
+							</tr>
+							<tr>
+								<td>resp_info</td>
+								<td>String</td>
+								<td class="tleft" style="word-break: break-all">成功 &nbsp;</td>
+								<td class="tleft">成功 或者 失败信息 &nbsp;</td>
+							</tr>
+							
+										 <tr><td>workorder_id&nbsp;</td>
+                        <td>
+                      					  <a href="">
+					  					  String&nbsp;</a>
+                                                    </td>
+                        <td class="tleft" style="word-break:break-all">
+                        								1234
+						                           &nbsp;</td>
+                        <td class="tleft">
+                            工单ID&nbsp;
+                        </td></tr>
+										 <tr><td>workorder_create_date&nbsp;</td>
+                        <td>
+                      					  <a href="">
+					  					  String&nbsp;</a>
+                                                    </td>
+                        <td class="tleft" style="word-break:break-all">
+                        								1234
+						                           &nbsp;</td>
+                        <td class="tleft">
+                            工单创建时间&nbsp;
+                        </td></tr>
+										 <tr><td>workorder_state&nbsp;</td>
+                        <td>
+                      					  <a href="">
+					  					  String&nbsp;</a>
+                                                    </td>
+                        <td class="tleft" style="word-break:break-all">
+                        								1234
+						                           &nbsp;</td>
+                        <td class="tleft">
+                            工单状态&nbsp;
+                        </td></tr>
+										 <tr><td>workorder_type&nbsp;</td>
+                        <td>
+                      					  <a href="">
+					  					  String&nbsp;</a>
+                                                    </td>
+                        <td class="tleft" style="word-break:break-all">
+                        								1234
+						                           &nbsp;</td>
+                        <td class="tleft">
+                            工单类型&nbsp;
+                        </td></tr>
+										 <tr><td>workorder_confirm_date&nbsp;</td>
+                        <td>
+                      					  <a href="">
+					  					  String&nbsp;</a>
+                                                    </td>
+                        <td class="tleft" style="word-break:break-all">
+                        								1234
+						                           &nbsp;</td>
+                        <td class="tleft">
+                            工单确认时间&nbsp;
+                        </td></tr>
+					
+						</tbody>
+					</table>
+				</div>
+				<div class="api_title">
+					<h4>返回示例值</h4>
+					<p>JSON 数据格式：</p>
+					<pre id="jsonData">
+					</pre>
+				</div>
+				<div class="api_title">
+					<h4>错误码</h4>
+					<table class="josTable">
+						<tbody>
+							<tr class="grayBlueBg">
+								<th width="30%">错误码</th>
+								<th width="30%">类型</th>
+								<th>是否必须</th>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="api_title">
+					<h4>API测试工具</h4>
+					<p></p>
+					<p>
+						<a href="../../tool/workorder/confirmWorkOrder.html" target="_blank"
+							class="toolsBtn">API测试工具</a>&nbsp;&nbsp; <a
+							href="../../example/workorder/confirmWorkOrder.html" target="_blank"
+							class="toolsBtn">SDK调用示例</a>
+					</p>
+
+				</div>
+			</article>
+		</section>
+		<footer>
+			<p style="text-align: center;">
+				&copy; meters<span style="color: red">/</span>bonwe 2016
+			</p>
+		</footer>
+		<div class="clr"></div>
+	</div>
+
+	<div id="hm_t_10255" class="hm-t-container">
+		<div class="hm-t-main"
+			style="width: 342px; height: 144px; display: none">
+			<!--</div><div class="hm-t-side-arrow" style="display: none;"></div></div>-->
+		</div>
+	</div>
+</body>
+</html>

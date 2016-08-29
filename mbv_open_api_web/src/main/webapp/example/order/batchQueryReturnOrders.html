@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>API调用示例</title>
+	<link rel="stylesheet" type="text/css" href="/css/base.css">
+	<link rel="stylesheet" type="text/css" href="/css/API.css">
+	<link rel="stylesheet" type="text/css" href="/css/example.css">
+	<link rel="stylesheet" href="/css/Font-Awesome-3.2.1/css/font-awesome.min.css">
+	<script charset="utf-8" src="/js/s.js"></script>
+	<script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/js/html5.min.js"></script>
+	<script type="text/javascript" src="/js/josAPI.js"></script>
+</head>
+<body>
+<header> 
+	<div id="logo" >
+		<a href=""><img src="/images/logo.jpg" alt="美特斯邦威"><span>|</span><i>API手册</i></a>
+	</div>
+	<div class="serachDiv" style="display:none;">
+		<input  type="text" id="searchInput" value="请输入您要搜索的内容..." class="searchInput">
+		<input type="button" id="searchBtn" class="searchBtn" value="搜 索">
+	</div>
+</header>
+<div class="wrapper">
+
+
+<script type="text/javascript">
+    $(function() {
+        
+        /**
+         * 检索
+         */
+        $("#searchBtn").click(function() {
+			var keyword=$("#searchInput").val();
+			if(keyword && keyword!="请输入您要搜索的内容...") {
+				var searchtype = "all";
+									searchtype = "api"
+					
+            	var url = "/search/search.htm?type="+searchtype+"&keyword="+jQuery.trim(keyword);
+				window.open(url,'',"");
+			}
+        });
+		
+		$(document).keyup(function(event){
+          if(event.keyCode ==13){
+            $("#searchBtn").trigger("click");
+          }
+		});
+    });
+	
+</script>
+
+	<div class="toolC">
+			<dt><br></dt>
+            <p></p><h4 class="open">mb.returnorder.batch.get调用示例（<span style="color:red">Java</span>）</h4> <br><p></p>
+            <div class="codeBox">
+				public MbClient client=new DefaultMbClient(SERVER_URL,token, appKey);
+				<dt><br></dt>
+                ReturnOrderBatchQueryRequest request=new ReturnOrderBatchQueryRequest();
+				<dt><br></dt>
+                  request.setStartDate("mb");
+                  <dt><br></dt>				
+                  request.setEndDate("mb");
+                  <dt><br></dt>				
+                  request.setReturnorderState("mb");
+                  <dt><br></dt>				
+                  request.setPageNo("mb");
+                  <dt><br></dt>				
+                  request.setPageSize("mb");
+                  <dt><br></dt>				
+                ReturnOrderBatchQueryResponse response=client.execute(request);
+				<dt><br></dt>
+    		</div>
+        </div>
+	<footer>
+		<p style="text-align: center;">
+			? meters<span style="color: red">/</span>bonwe 2015
+		</p>
+	</footer>
+</div>

@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>API手册-API详情页</title>
+<link rel="stylesheet" type="text/css" href="../../css/base.css">
+<link rel="stylesheet" type="text/css" href="../../css/API.css">
+<link rel="stylesheet" type="text/css" href="../../css/example.css">
+<link rel="stylesheet"
+	href="../../css/Font-Awesome-3.2.1/css/font-awesome.min.css">
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/html5.min.js"></script>
+<script type="text/javascript" src="../../js/josAPI.js"></script>
+<body>
+	<header>
+		<div id="logo">
+			<a href=""><img src="../../images/logo.jpg" alt="美特斯邦威"><span>|</span><i>API手册</i></a>
+		</div>
+		<div class="serachDiv" style="display: none;">
+			<input type="text" id="searchInput" value="请输入您要搜索的内容..."
+				class="searchInput"> <input type="button" id="searchBtn"
+				class="searchBtn" value="搜 索">
+		</div>
+	</header>
+	<div class="wrapper">
+
+
+		<script type="text/javascript">
+			$(function() {
+
+				/**
+				 * 检索
+				 */
+				$("#searchBtn").click(
+						function() {
+							var keyword = $("#searchInput").val();
+							if (keyword && keyword != "请输入您要搜索的内容...") {
+								var searchtype = "all";
+								searchtype = "api"
+
+								var url = "/search/search.htm?type="
+										+ searchtype + "&keyword="
+										+ jQuery.trim(keyword);
+								window.open(url, '', "");
+							}
+						});
+
+				$(document).keyup(function(event) {
+					if (event.keyCode == 13) {
+						$("#searchBtn").trigger("click");
+					}
+				});
+			});
+		</script>
+		<!-- <p class="pageCrumb">
+			<a href="/index.html">文档首页</a> <i>&gt;</i> <a href="/index.html">API文档</a>
+			<i>&gt;</i> <a href="/list/express.html">物流</a> <i>&gt;</i> <a
+				href="/detail/express/getExpressCompany.html">mb.logistics.expresscompany.get</a>
+			<i>&gt;</i> <a href="javascript:void(0)">ExpressCompany</a>
+		</p> -->
+		<div class="baenCon">
+			<div class="api_title">
+				<h4>简要描述</h4>
+				<p>对象名：${bean.name}</p>
+			</div>
+			<div class="api_title">
+				<h4>数据字段说明</h4>
+				<table class="josTable">
+				<tr class="grayBlueBg">
+							<th width="20%">名称</th>
+							<th width="15%">类型</th>
+							<th width="15%">示例值</th>
+							<th width="10%">是否必须</th>
+							<th>描述</th>
+				</tr>
+					<tbody>
+			#foreach($field in $bean.fields)
+					  <tr><td>${field.jsonName}&nbsp;</td>
+                        <td>
+                      #if(${field.type.contains("List")}||${field.fullType.startsWith("com.mbv")})
+					  <a href="/bean/${provider.url}/${field.objectType}.html" target="_blank">
+					  #else
+					  <a href="#" target="_blank">
+					  #end                                  						    						    								 			
+					  ${field.type.replace("<","&lt;").replace(">","&gt;")}&nbsp;</a> </td>
+                        <td>
+                           #if(${field.defaultValue} != '')						
+						       ${field.defaultValue}
+						   #else
+								1234
+						   #end
+                        </td>
+						<td>
+						     #if(${field.nullable})						
+						                                                    否
+																			#else
+																			是
+																			#end
+						</td>
+                        <td>${field.desc}</td></tr>
+			#end  		
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<footer>
+			<p style="text-align: center;">
+				&copy; meters<span style="color: red">/</span>bonwe 2016
+			</p>
+		</footer>
+	</div>

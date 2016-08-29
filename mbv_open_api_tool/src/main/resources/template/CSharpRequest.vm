@@ -1,0 +1,54 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+#if($bean.fields.size()>0)
+using Newtonsoft.Json;
+#end
+using com.mbv.open.api.sdk.request.BaseRequest;
+#foreach($importObject in $request.importObjects)
+using $importObject;
+#end
+
+/**
+ * 
+ * @author mb.sdk.tool
+ *
+ */
+
+namespace $request.fullPackage{
+ 
+ 
+public class ${request.name} : BaseRequest<${request.responseName}> {
+
+#foreach($field in $request.fields)
+ 
+	public $field.type $fieldNameUpper{get;set;}                 
+    
+#end
+
+	
+	public override string GetApiMethod() {
+		return "${api.parentPath}/${api.path}";
+	}
+
+
+	public override string GetAppParams() {
+#if($request.fields.size()>0)
+		Dictionary<string, object> map = new Dictionary<string,object>();
+#end
+#foreach($field in $request.fields)	
+  #set($fieldNameUpper=${nameUtil.firstUpperPasical($field.name)})
+  #set($fieldNameUnderline=${nameUtil.toUnderline($field.name)})  
+	    map.Add("${fieldNameUnderline}", this.${fieldNameUpper});
+#end	
+#if($request.fields.size()>0)
+	    return Newtonsoft.Json.JsonConvert.SerializeObject(map);
+#else
+	    return "";
+#end    
+	}
+
+}	
+
+}

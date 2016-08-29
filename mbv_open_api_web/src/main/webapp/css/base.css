@@ -1,0 +1,27 @@
+@charset "utf-8";
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote,dl, dt, dd, ul, ol, li,pre,form, fieldset, legend, button, input, textarea,th, td {margin: 0;padding: 0;}
+body,button, input, select, textarea {font:12px tahoma,arial,宋体,sans-serif}
+body{background:#fff;color:#333;}
+h1, h2, h3, h4, h5, h6 {font-size:100%; color:#333;}
+em,i{font-style: normal; } 
+ul, ol,li {list-style: none; }
+a{color:#333;text-decoration:none;}
+a:hover{text-decoration:underline; }
+img {border: 0; }
+button, input, select, textarea { font-size: 100%;} 
+table {border-collapse: collapse; border-spacing: 0; }
+img{vertical-align:middle;display:inline-block;}
+article, aside, details, figcaption, figure, footer,header, hgroup, menu, nav, section,
+summary, time, mark, audio, video{display: block;margin: 0;padding: 0;}
+p{line-height:1.6em;}
+table{border-collapse:collapse;border-spacing:0;}
+.clr{clear:both;}
+.clearfix:after{visibility:hidden;display:block;font-size:0;content:".";clear:both;height:0;line-height:0;overflow:hidden}
+.clearfix{*zoom:1}
+.fl{float:left;}
+.fr{float:right;}
+.tright{text-align:right;}
+.tcenter{text-align:center;}
+.hide{display:none;}
+.f12{font-size:12px;}
+.f14{font-size:14px;}

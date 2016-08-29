@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:protocol name="rest" port="${dubbo.rest.port}" server="servlet" contextpath="${dubbox.contextpath}" extension="com.mbv.open.api.exception.ExceptionMapperSupport,com.mbv.open.api.filter.SecurityFilter"/>
+
+    <dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}"/>
+
+    <dubbo:service interface="com.mbv.open.api.client.demo.MbService" ref="demoService"/>
+    <dubbo:service interface="com.mbv.open.api.client.stock.MbStockService" ref="stockService"/>
+	<dubbo:service interface="com.mbv.open.api.client.express.MbAddressService" ref="addressService" />
+	<dubbo:service interface="com.mbv.open.api.client.product.MbProductService" ref="productService"/>
+    <dubbo:service interface="com.mbv.open.api.client.order.MbOrderService" ref="orderService"/>
+    <dubbo:service interface="com.mbv.open.api.client.workorder.MbWorkOrderService" ref="workOrderService"/>
+    <dubbo:service interface="com.mbv.open.api.client.order.MbReturnOrderService" ref="returnOrderService"/>
+	
+    <bean id="demoService" class="com.mbv.open.api.rest.demo.MbServiceImpl"/>
+    <bean id="stockService" class="com.mbv.open.api.rest.stock.MbStockServiceImpl"/>
+    <bean id="addressService" class="com.mbv.open.api.rest.express.MbAddressServiceImpl"/>
+    <bean id="productService" class="com.mbv.open.api.rest.product.MbProductServiceImpl"/>
+    <bean id="orderService" class="com.mbv.open.api.rest.order.MbOrderServiceImpl"/>
+    <bean id="workOrderService" class="com.mbv.open.api.rest.workorder.MbWorkOrderServiceImpl"/>
+    <bean id="returnOrderService" class="com.mbv.open.api.rest.order.MbReturnOrderServiceImpl"/>
+
+</beans>

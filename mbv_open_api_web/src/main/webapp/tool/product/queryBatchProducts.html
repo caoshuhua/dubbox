@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>API工具</title>
+<link rel="stylesheet" type="text/css" href="../../css/base.css">
+<link rel="stylesheet" type="text/css" href="../../css/API.css">
+<link rel="stylesheet" type="text/css" href="../../css/tool.css">
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../js/html5.min.js"></script>
+<script type="text/javascript" src="../../js/josAPI.js"></script>
+<script type="text/javascript" src="../../js/jquery.form.js"></script>
+<script type="text/javascript" src="../../js/blockUI.js"></script>
+<script type="text/javascript" src="../../js/jquery-ui-1.8.2.custom.js"></script>
+<script type="text/javascript">
+	function createIndex() {
+		//添加 等待层
+		jQuery.blockUI({
+			css : {
+				border : 'none',
+				padding : '15px',
+				backgroundColor : '#000',
+				'-webkit-border-radius' : '10px',
+				'-moz-border-radius' : '10px',
+				opacity : .5,
+				color : '#fff'
+			},
+			message : '<img src="../../images/loading.gif" /><h3>正在提交数据，请稍后！.</h3>'
+		});
+
+	}
+	function delUI() {
+		jQuery.unblockUI();
+	}
+	
+	function getContextPath() {
+        var pathName = document.location.pathname;
+        var index = pathName.substr(1).indexOf("/");
+        var result = pathName.substr(0,index+1);
+        return result.replace('/tool','');
+   }
+
+	//初始化操作
+	jQuery(function() {
+		jQuery("#submitId").click(
+				function() {
+					var boolean = false;
+					createIndex();
+					var json = "{";
+					$("#parameterAndValue input[type='text']").each(
+							function() {
+								json += "\"" + $(this).attr("name") + "\":\""
+										+ $(this).val() + "\",";
+							});
+					if (json.length > 1) {
+						json = json.substring(0, json.length - 1);
+					}
+					json += "}";
+					$("#param_json").val(json);
+					var path = jQuery.trim($("#path").val());
+					var token = $("#token").val();
+					var appKey = $("#appKey").val();
+					var baseUrl = window.location.origin+getContextPath()+"/rest/";
+					var url = baseUrl + path + "?appkey=" + appKey
+							+ "&token=" + token  + "&params=" + encodeURIComponent(json);
+					$("#url").val(url);
+				    $.post(url,function(data){
+                        $("#urlId").val(url);
+                        $("#resultId").val(JSON.stringify(data));
+                    }).error(function(data){
+			            $("#urlId").val(url);
+				        var response=data.responseText;
+                        $("#resultId").val(response);
+				        alert(JSON.parse(response).resp_info);
+			        });
+			        delUI();
+				});
+	});
+</script>
+</head>
+
+
+
+<body>
+	<header>
+		<div id="logo">
+			<a href=""><img src="../../images/logo.jpg" alt="美特斯邦威"><span>|</span><i>API手册</i></a>
+		</div>
+		<div class="serachDiv" style="display: none;">
+			<input type="text" id="searchInput" value="请输入您要搜索的内容..."
+				class="searchInput"> <input type="button" id="searchBtn"
+				class="searchBtn" value="搜 索">
+		</div>
+	</header>
+	<div class="wrapper">
+		<script type="text/javascript">
+			$(function() {
+
+				/**
+				 * 检索
+				 */
+				$("#searchBtn").click(
+						function() {
+							var keyword = $("#searchInput").val();
+							if (keyword && keyword != "请输入您要搜索的内容...") {
+								var searchtype = "all";
+								searchtype = "api"
+
+								var url = "/search/search.htm?type="
+										+ searchtype + "&keyword="
+										+ jQuery.trim(keyword);
+								window.open(url, '', "");
+							}
+						});
+
+				$(document).keyup(function(event) {
+					if (event.keyCode == 13) {
+						$("#searchBtn").trigger("click");
+					}
+				});
+			});
+		</script>
+		<div class="baenCon">
+			<div class="api_title">
+				<h4>API测试工具</h4>
+				<p>API类目：mb.product.batch.get</p>
+				<p>API描述：批量商品信息查询</p>
+				<p>版本号：1.0</p>
+			</div>
+			<div class="toolContent">
+				<form id="signatureForm" name="signatureForm" action="#"
+					method="post">
+					<input name="param_json" id="param_json" value="" type="hidden">
+					<input name="path" id="path"
+						value="product/mb.product.batch.get" type="hidden">
+					<input name="version" id="version" value="2.0" type="hidden">
+					<input name="url" id="url" value="" type="hidden">
+					<div class="api_title api_tool">
+					<h4>系统级别输入参数</h4>
+					<table class="toolTable">
+						<tbody>
+							<tr>
+								<th width="20%">参数名称</th>
+								<th width="45%">参数值</th>
+								<th>参数描述</th>
+							</tr>
+							<tr>
+								<td>appKey</td>
+								<td><span class="redFont">*</span><input type="text"
+									id="appKey" name="appKey" value="" class="toolInput"></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>access_token</td>
+								<td><span class="redFont">*</span><input type="text"
+									id="token" name="token" class="toolInput" value=""></td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table></div>			
+                    <div id="parameterAndValue" class="api_title api_tool">
+					<h4>应用级别输入参数</h4>
+						<table class="toolTable">
+							<colgroup>
+							<col width="20%">
+						    <col width="45%">
+						    <col></colgroup>
+							<tbody>
+										<tr>
+                    	<td>productIds</td>
+                    	<td>
+												<span class="redFont">*</span>
+												<input type="text" id="product_ids" name="product_ids" class="toolInput" data='app' value=""></td>
+                    	<td>商品款码列表</td>
+                    </tr>
+												</tbody>
+						</table>
+					</div> 
+					<input type="button" id="submitId" class="toolsBtn" value="提交测试">
+				</form>
+			</div>
+			<div class="toolContent">
+				<div class="toolLeft">
+					<p>提交参数：</p>
+					<div class="codeBox">
+						<textarea id="urlId" rows="17" cols="75" readonly="true"></textarea>
+					</div>
+				</div>
+				<div class="toolRight">
+					<p>返回结果：</p>
+					<div class="codeBox">
+						<textarea id="resultId" rows="17" cols="75" readonly="true"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="toolContent">
+				<p>SDK调用：</p>
+				<div class="codeBox" id="sdkExample">
+					<h4>mb.product.batch.get调用示例（Java版）：</h4>
+					<br> public MbClient client=new
+					DefaultMbClient(SERVER_URL,token, appKey);
+					<dt>
+						<br>
+					</dt>
+                ProdBatchRequest request=new ProdBatchRequest();<br>
+                  List&lt;ProductId&gt; productIds=new ArrayList&lt;ProductId&gt;();<br> 
+				ProductId productId=new ProductId();<br>
+				productIds.add(productId);<br>
+				request.setproductIds(productIds);				
+                  <br>				
+                ProdBatchResponse response=client.execute(request);
+			</div>
+
+		</div>
+		<footer>
+			<p style="text-align: center;">
+				&copy; meters<span style="color: red">/</span>bonwe 2016
+			</p>
+		</footer>
+	</div>
